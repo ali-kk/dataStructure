@@ -4,6 +4,64 @@
 #include"circularop.h"
 #include"linkedstack.h"
 #include"linkedQ.h"
+#include"binary.h"
+
+
+void insert(node*& root, int item) {
+	if (root == NULL) {
+		node* newnode = new node();
+		newnode->data = item;
+		newnode->left = NULL;
+		newnode->right = NULL;
+		root = newnode;
+		return;
+	}
+	if (item < root->data) {
+		insert(root->left, item);
+	}
+	else {
+		insert(root->right, item);
+	}
+}
+
+bool search(node* root, int item) {
+	if (root == NULL) {
+		return false;
+	}
+	else if (root->data == item) {
+		return true;
+	}
+	else if (root->data < item) {
+		return search(root->right, item);
+	}
+	else {
+		return search(root->left, item);
+	}
+}
+
+void preorder(node* root) {
+	if (root != NULL) {
+		cout << root->data << endl;
+		preorder(root->left); // LEFT
+		preorder(root->right); // RIGHT
+	}
+}
+
+void postorder(node* root) {
+	if (root != NULL) {
+		postorder(root->left); // LEFT
+		postorder(root->right); // RIGHT
+		cout << root->data << endl;
+	}
+}
+
+void inorder(node* root) {
+	if (root != NULL) {
+		inorder(root->left); // LEFT
+		cout << root->data << endl;
+		inorder(root->right); // RIGHT
+	}
+}
 using namespace std;
 
 int main()
@@ -32,7 +90,7 @@ int main()
 		cout << "3. " << "circular linked list" << endl;
 		cout << "4. " << "linked stack " << endl;
 		cout << "5. " << "linked queue " << endl;
-
+		cout << "6. " << "binary search tree" << endl;
 
 		cin >> determine;
 
@@ -783,6 +841,100 @@ int main()
 
 
 			}
+
+		}
+
+
+
+
+		if (determine == 6)
+		{	
+			cout << "\n===============================" << endl;
+			cout << " YOU SELECTED BINARY SEARCH TREE" << endl;
+			cout << "\n===============================" << endl;
+			cout << endl << "how many nodes to the tree?" << endl;
+			cin >> y;
+			if (y < 1)
+			{
+
+				cout << "\n================" << endl;
+				cout << endl << "ERROR! NUMBER OF NODES SHOULD BE GREATER THAN 0" << endl;
+
+				cout << "\n==========================" << endl;
+				cout << "RE-RUN? 1/0" << endl;
+				cin >> x;
+
+				if (x == 1)
+				{
+					i = -1;
+					continue;
+				}
+				else
+				{
+					cout << "\n================" << endl;
+					cout << "GOOD BYEEEEEEEE" << endl;
+					cout << "\n================" << endl;
+					break;
+				}
+			}
+			
+			else if(y>0)
+			{
+				node* root = NULL;
+			
+			for (int i = 0; i < y; i++) 
+			{
+					cin >> value;
+					insert(root,value);
+			}
+			cout << "\n==========================" << endl;
+				cout << "Preorder traversal:" << endl;
+				 preorder(root);
+				cout << "\n==========================" << endl;
+				cout << "Postorder traversal:" << endl;
+				 postorder( root);
+				cout << "\n==========================" << endl;
+				cout << "Inorder traversal:" << endl;
+				 inorder( root);
+				cout << "\n==========================" << endl;
+				cout << "Enter a value to search for: ";
+				cin >> value;
+
+				if ( search( root, value)) {
+					cout << "Value " << value << " found in the tree." << endl;
+				}
+				else {
+					cout << "Value " << value << " not found in the tree." << endl;
+				}
+
+				
+			}
+		}
+
+		else
+		{
+			
+
+				cout << "\n================" << endl;
+				cout << endl<<determine << ". IS NOT OPTION!" << endl;
+				cout << "\n==========================" << endl;
+				cout << "RE-RUN? 1/0" << endl;
+				cin >> x;
+
+				if (x == 1)
+				{
+					i = -1;
+					continue;
+				}
+				else
+				{
+					cout << "\n================" << endl;
+					cout << "GOOD BYEEEEEEEE" << endl;
+					cout << "\n================" << endl;
+					cout << endl << endl;
+					break;
+				}
+			
 
 		}
 
