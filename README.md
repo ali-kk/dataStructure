@@ -1,1 +1,1 @@
-# dataStructure
+just some trainig :)
