@@ -6,7 +6,7 @@
 #include"linkedQ.h"
 
 
-//bnary search tree functons
+//binary search tree functons
 void insert(node*& root, int item) {
 	if (root == NULL) {
 		node* newnode = new node();
